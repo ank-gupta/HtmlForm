@@ -46,25 +46,53 @@ Grid columns are created by specifying the number of 12 available columns you wi
  .col-sm-4
 Column widths are in percentage, so they are always fluid and sized relative to their parent element </p>
 </div><hr>
-<div class="row">
-  <form class="form-inline" action="">
-  <div class="form-group">
+<div class="row" style background-color:yellow>
+  <form name="myForm" onsubmit="validateForm()" method="post">
     <label for="name"> Name:</label><br>
 	<input type="text" name="name"><br>
 	<label for="email"> Email:</label><br>
- <input type="email" class="form-inline" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required><br>
+ <input type="email" name="email" class="form-inline"><br>
 	<label for="password"> Password:</label><br>
-	<input type="password" class="form-inline" id="password" pattern="{6,}" title="atleast 6 or more charactres" required><br>
-	<label for="gender"> Gender: </label><br>
-	<button type="button" class="form-inline">Male</button>
-	<button type="button" class="form-inline">Female</button><br>
+	<input type="password" class="form-inline" id="password" ><br>
+	<label for="gender">Gender:</label>
+	   <div class="radio">
+      <label><input type="radio" name="gender" id="m">Male</label>
+      <label><input type="radio" name="gender" id="f">Female</label>
+	  </div>
 	<label for="dob"> Date of Birth</label><br>
 	<input type="text" class="form-inline"><br><br>
-	<input type="file"><br>
-	<button type="submit" class="btn btn-default">Submit</button>
+	<input type="submit" value="Submit">
 </form>
 </div> 
 </div>
 </div>
 </body>
+<script>
+function validateForm() {
+   var x = document.forms["myForm"]["name"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+	 var a = document.forms["myForm"]["email"].value;
+	var c=a.indexOf("@");
+	var s=a.substring(c, a.length);
+	if(!(s=="@gmail.com"))
+	{alert("invalid email");
+        return false;
+	}
+	var a = document.forms["myForm"]["password"].value;
+	if(a.length<6)
+	{
+	alert("Password must be greater than 6");
+	return false;
+	}
+	//check Gender
+		 var g= document.getElementsByName('gender');
+            if(g[0].checked == true){
+             alert("Choose Female as gender");
+            return false;
+        }
+		}
+</script>
 </html>
